@@ -7,7 +7,8 @@ import java.util.UUID
 data class InsurancePolicy(
     @PrimaryKey(autoGenerate = true)
     val uid: UUID = UUID.randomUUID(),
-    val insurer: UUID,
+    val insurerId: UUID,
+    val customerId: UUID,
     val name: String,
     val description: String
 )

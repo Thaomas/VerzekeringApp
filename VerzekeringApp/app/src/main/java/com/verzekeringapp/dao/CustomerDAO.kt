@@ -10,6 +10,6 @@ interface CustomerDAO {
     @Query("SELECT * FROM customers")
     fun getAll(): List<User>
 
-    @Query("SELECT * FROM customers where uid in (:customerIds)")
+    @Query("SELECT * FROM customers WHERE uid IN (:customerIds)")
     fun loadAllByIds(customerIds: List<UUID>): List<User>
 }

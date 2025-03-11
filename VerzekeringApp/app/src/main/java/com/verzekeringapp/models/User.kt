@@ -17,13 +17,4 @@ abstract class User {
 
     @ColumnInfo("password")
     val password: String = ""
-
-    @ColumnInfo("userType")
-    val type: UserType = UserType.Customer
-}
-
-enum class UserType{
-    Customer,
-    InsuranceProvider,
-    Admin
 }
