@@ -2,6 +2,7 @@ package com.verzekeringapp.dao
 
 import androidx.room.Dao
 import androidx.room.Query
+import com.verzekeringapp.models.InsurancePolicy
 import com.verzekeringapp.models.User
 import java.util.UUID
 
@@ -12,4 +13,7 @@ interface CustomerDAO {
 
     @Query("SELECT * FROM customers WHERE uid IN (:customerIds)")
     fun loadAllByIds(customerIds: List<UUID>): List<User>
+
+    @Query("SELECT * FROM policies WHERE customerId IS (:customerId)")
+    fun getCustomerPolicies(customerId : UUID): List<InsurancePolicy>
 }
