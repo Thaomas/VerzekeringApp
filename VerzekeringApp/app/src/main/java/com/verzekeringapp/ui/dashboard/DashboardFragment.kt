@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.verzekeringapp.AppDatabase
 import com.verzekeringapp.databinding.FragmentDashboardBinding
+import com.verzekeringapp.ui.adapters.PolicyRCVAdapter
 
 class DashboardFragment : Fragment() {
 
@@ -17,16 +21,22 @@ class DashboardFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        val dashboardViewModel = ViewModelProvider(this)[DashboardViewModel::class.java]
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        val db = AppDatabase.getDatabase(requireContext())
+
+        val list = db.policyDao().getAllDetails()
+        val recyclerView: RecyclerView = binding.policyRecyclerView
+
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
+        val adapter = PolicyRCVAdapter(list)
+        recyclerView.adapter = adapter
+
 
         val textView: TextView = binding.textDashboard
         dashboardViewModel.text.observe(viewLifecycleOwner) {
