@@ -20,6 +20,7 @@ import com.verzekeringapp.views.PolicyDetail
     views = [PolicyDetail::class],
     version = 1)
 @TypeConverters(Converters::class)
+
 abstract class AppDatabase : RoomDatabase() {
 
     companion object {

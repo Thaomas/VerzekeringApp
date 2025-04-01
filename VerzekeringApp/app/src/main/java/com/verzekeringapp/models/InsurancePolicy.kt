@@ -25,4 +25,8 @@ import java.util.UUID
     val customerId: UUID,
     val name: String,
     val description: String
-)
+){
+    override fun toString(): String {
+        return name
+    }
+}

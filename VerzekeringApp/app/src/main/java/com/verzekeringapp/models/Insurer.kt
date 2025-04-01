@@ -19,4 +19,8 @@ data class Insurer(
     override val password: String,
 
     val description: String
-) : User
+) : User{
+    override fun toString(): String {
+        return name
+    }
+}

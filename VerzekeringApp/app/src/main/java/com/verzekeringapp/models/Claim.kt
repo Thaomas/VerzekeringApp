@@ -15,6 +15,7 @@ import java.util.UUID
     ],
     indices = [Index(value = ["policyId"])]
 )
+
 data class Claim(
     @PrimaryKey
     val uid: UUID = UUID.randomUUID(),
